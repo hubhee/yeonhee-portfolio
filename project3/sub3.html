@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제주수목원/sub3</title>
+    <link href="css/sub3.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="js/script_sub3.js"></script>
+
+    <!-- btn3 메뉴 버튼 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        var j120 = jQuery.noConflict();
+        j120(document).ready(function () {
+            mobile_menu();
+        });
+
+        function mobile_menu() {
+            /* 변수 선언 */
+            var $menu = null;
+            var $left_gnb = null; // 영역 전체
+            var $depth1_wrap = null;
+            var $depth1 = null;
+            var $depth1_btn = null;
+
+            /* 시작 함수 */
+            function start() {
+                init();
+                init_event();
+            }
+            /* 변수 초기화 함수 */
+            function init() {
+                $menu = j120('.btn3');
+                $left_gnb = j120('.left_gnbWrap'); // 영역 전체
+                $depth1_wrap = j120('.left_gnb>li');
+                $depth1 = $depth1_wrap.children('ul');
+                $depth1_btn = $depth1_wrap.children('a');
+            }
+            /* 이벤트 함수 */
+            function init_event() {
+
+                /* 모바일 메뉴 버튼 클릭했을때 모바일 메뉴영역 나오게 하기 */
+                $menu.click(function (event) {
+                    event.preventDefault();
+                    $left_gnb.addClass('on');
+                });
+
+                /* x버튼 눌렀을때 모바일 메뉴 닫기 */
+                $('.close').click(function (event) {
+                    event.preventDefault();
+
+                    $left_gnb.removeClass('on');
+
+                    // x버튼 누르면 시간차 약간두고 소메뉴 닫히게 하기
+                    setTimeout(function () {
+                        $depth1_btn.removeClass('on');
+                        $depth1.slideUp();
+                    }, 300)
+                });
+
+                /* depth1의 각메뉴 클릭시 depth2 나오게 하기 */
+                $depth1_btn.click(function (event) {
+                    event.preventDefault();
+                    var $this = $(this);
+                    var $this_ul = $this.siblings('ul');
+
+                    var check = $this.hasClass('on');
+                    if (check) {
+                        $this.removeClass('on');
+                        $this_ul.stop(true, true).slideUp();
+                    } else {
+                        $depth1_btn.removeClass('on');
+                        $depth1.stop().slideUp();
+                        $this.addClass('on');
+                        $this_ul.stop(true, true).slideDown();
+                    }
+                });
+
+                /* 디바이스 크기 변경시 모바일 메뉴영역 숨기기 */
+                j120(window).resize(function () {
+                    $left_gnb.removeClass('on');
+                });
+            }
+
+            start(); // 시작 호출
+        }
+    </script>
+</head>
+<body>
+    <div id="wrap">
+        <div id="header">
+            <div class="logo"><a href="index.html"><img src="images/logo.png"></a></div>
+            <nav>
+                <div class="inner">
+                    <ul class="menu">
+                        <li><a href="sub1.html">수목원 소개</a>
+                            <div class="nav_box">
+                                <ul class="submenu">
+                                    <li>
+                                        <ul>
+                                            <li><a href="sub1.html">관람안내</a></li>
+                                            <li><a>찾아오시는길</a></li>
+                                            <li><a>기관소개</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <ul>
+                                            <li><a href="sub2.html">수목원구성</a></li>
+                                            <li><a>주요시설물</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <ul>
+                                            <li><a href="sub3.html">식물소개</a></li>
+                                            <li><a>오늘의 식물</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <ul>
+                                            <li><a href="sub4.html">수목원소식</a></li>
+                                            <li><a>자유게시판</a></li>
+                                            <li><a>탐방갤러리</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a href="sub2.html">수목원 둘러보기</a>
+                            <div class="nav_box">
+                                <ul class="submenu">
+                                    <li>
+                                        <ul>
+                                            <li><a href="sub1.html">관람안내</a></li>
+                                            <li><a>찾아오시는길</a></li>
+                                            <li><a>기관소개</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <ul>
+                                            <li><a href="sub2.html">수목원구성</a></li>
+                                            <li><a>주요시설물</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <ul>
+                                            <li><a href="sub3.html">식물소개</a></li>
+                                            <li><a>오늘의 식물</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <ul>
+                                            <li><a href="sub4.html">수목원소식</a></li>
+                                            <li><a>자유게시판</a></li>
+                                            <li><a>탐방갤러리</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a href="sub3.html">식물자료실</a>
+                            <div class="nav_box">
+                                <ul class="submenu">
+                                    <li>
+                                        <ul>
+                                            <li><a href="sub1.html">관람안내</a></li>
+                                            <li><a>찾아오시는길</a></li>
+                                            <li><a>기관소개</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <ul>
+                                            <li><a href="sub2.html">수목원구성</a></li>
+                                            <li><a>주요시설물</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <ul>
+                                            <li><a href="sub3.html">식물소개</a></li>
+                                            <li><a>오늘의 식물</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <ul>
+                                            <li><a href="sub4.html">수목원소식</a></li>
+                                            <li><a>자유게시판</a></li>
+                                            <li><a>탐방갤러리</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a href="sub4.html">참여마당</a>
+                            <div class="nav_box">
+                                <ul class="submenu">
+                                    <li>
+                                        <ul>
+                                            <li><a href="sub1.html">관람안내</a></li>
+                                            <li><a>찾아오시는길</a></li>
+                                            <li><a>기관소개</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <ul>
+                                            <li><a href="sub2.html">수목원구성</a></li>
+                                            <li><a>주요시설물</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <ul>
+                                            <li><a href="sub3.html">식물소개</a></li>
+                                            <li><a>오늘의 식물</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <ul>
+                                            <li><a href="sub4.html">수목원소식</a></li>
+                                            <li><a>자유게시판</a></li>
+                                            <li><a>탐방갤러리</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <!-- 초기화 -->
+                    </ul>
+                </div>
+            </nav>
+            <div class="header_btn">
+                <div class="btn1">
+                    <a href="#"><img src="images/icon_global.png"></a>
+                    <ul class="btn1_con">
+                        <li><a href="index.html">KOR</a></li>
+                        <li><a href="#">ENG</a></li>
+                    </ul>
+                </div>
+                <div class="btn2">
+                    <a href="#"><img src="images/icon_search.png"></a>
+                    <div class="btn2_con">
+                        <div>
+                            <form>
+                                <input type="text" value="검색어를 입력해 주세요." class="main_searchbar_t">
+                                <input type="button" class="main_searchbar_b">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn3">
+                    <a href="#"><img src="images/icon_menu.png"></a>
+                </div>
+                <nav class="left_gnbWrap">
+                    <a href="#" class="close"><img src="images/close.png"></a>
+                    <ul class="left_gnb">
+                        <li>
+                            <a href="sub1.html">수목원 소개</a>
+                            <ul>
+                                <li><a href="sub1.html">관람안내</a></li>
+                                <li><a href="#">찾아오시는길</a></li>
+                                <li><a href="#">기관소개</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="sub2.html">수목원 둘러보기</a>
+                            <ul>
+                                <li><a href="sub2.html">수목원구성</a></li>
+                                <li><a href="#">주요시설물</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="sub3.html">식물자료실</a>
+                            <ul>
+                                <li><a href="sub3.html">식물소개</a></li>
+                                <li><a href="#">오늘의 식물</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="sub4.html">참여마당</a>
+                            <ul>
+                                <li><a href="sub4.html">수목원소식</a></li>
+                                <li><a href="#">자유게시판</a></li>
+                                <li><a href="#">탐방갤러리</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- 초기화 -->
+            </div>
+            <!-- 초기화 -->
+        </div>
+        <div id="mainimg"></div>
+        <div id="contents">
+            <nav>
+                <div class="s_inner">
+                    <ul class="sidemenu">
+                        <li><a href="index.html"></a>
+                        </li>
+                        <li><a>식물자료실</a>
+                        </li>
+                        <li><a href="#">식물소개</a>
+                            <ul class="side_menu">
+                                <li><a href="sub3.html">식물소개</a></li>
+                                <li><a href="#">오늘의 식물
+                                </a></li>
+                            </ul>
+                        </li>
+                        <!-- 초기화 -->
+                    </ul>
+                </div>
+            </nav>
+            <div class="inner">
+                <h2>식물소개</h2>
+                <div class="con_h">
+                    <ul>
+                        <li>ㄱ~ㄷ</li>
+                        <li>ㄹ~ㅂ</li>
+                        <li>ㅅ~ㅈ</li>
+                        <li>ㅊ~ㅌ</li>
+                        <li>ㅍ~ㅎ</li>
+                        <!-- 초기화 -->
+                    </ul>
+                    <fieldset class="searchbar">
+                        <input type="text" class="searchbar_t">
+                        <input type="button" class="searchbar_b">
+                        <!-- 초기화 -->
+                    </fieldset>
+                    <!-- 초기화 -->
+                </div>
+                <div class="con_b">
+                    <div class="con_b_1">
+                        <div>ㄱ</div>
+                        <img src="images/icon_plus.png">
+                        <div class="imgset">
+                            <div>
+                                <img src="images/img01_sub3.jpg">
+                                <div>가시나무</div>
+                            </div>
+                            <div>
+                                <img src="images/img02_sub3.jpg">
+                                <div>가시연꽃</div>
+                            </div>
+                            <div>
+                                <img src="images/img03_sub3.jpg">
+                                <div>감나무</div>
+                            </div>
+                            <!-- 초기화 -->
+                        </div>
+                        <!-- 초기화 -->
+                    </div>
+                    <div class="con_b_2">
+                        <div>ㄴ</div>
+                        <img src="images/icon_plus.png">
+                        <div class="imgset">
+                            <div>
+                                <img src="images/img04_sub3.jpg">
+                                <div>남산제비꽃</div>
+                            </div>
+                            <div>
+                                <img src="images/img05_sub3.jpg">
+                                <div>남천</div>
+                            </div>
+                            <div>
+                                <img src="images/img06_sub3.jpg">
+                                <div>노루귀</div>
+                            </div>
+                            <!-- 초기화 -->
+                        </div>
+                        <!-- 초기화 -->
+                    </div>
+                    <div class="con_b_3">
+                        <div>ㄷ</div>
+                        <img src="images/icon_plus.png">
+                        <div class="imgset">
+                            <div>
+                                <img src="images/img07_sub3.jpg">
+                                <div>다래</div>
+                            </div>
+                            <div>
+                                <img src="images/img08_sub3.jpg">
+                                <div>달맞이꽃</div>
+                            </div>
+                            <div>
+                                <img src="images/img09_sub3.jpg">
+                                <div>덩굴장미</div>
+                            </div>
+                            <!-- 초기화 -->
+                        </div>
+                        <!-- 초기화 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <div class="inner">
+                <div class="copyright">
+                    <p><span>개인정보처리방침</span> ㅣ 이용안내 ㅣ 찾아오시는 길 ㅣ 사이트맵</p>
+                    <p>Copyright 2012 제주특별자치도. All rights reserved<br>
+                        (63143) 제주특별자치도 제주시 수목원길 72 (연동) 대표전화:064-710-7575</p>
+                </div>
+                <div class="f_logo"><img src="images/f_logo.png"></div>
+                <!-- 초기화 -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>

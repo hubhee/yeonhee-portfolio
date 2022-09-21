@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YBM어학원</title>
+    <link href="css/style.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            mobile_menu();
+        });
+
+        function mobile_menu() {
+            /* 변수 선언 */
+            var $menu = null;
+            var $left_gnb = null; // 영역 전체
+            var $depth1_wrap = null;
+            var $depth1 = null;
+            var $depth1_btn = null;
+
+            /* 시작 함수 */
+            function start() {
+                init();
+                init_event();
+            }
+            /* 변수 초기화 함수 */
+            function init() {
+                $menu = $('.menu');
+                $left_gnb = $('.left_gnbWrap'); // 영역 전체
+                $depth1_wrap = $('.left_gnb>li');
+                $depth1 = $depth1_wrap.children('ul');
+                $depth1_btn = $depth1_wrap.children('a');
+            }
+            /* 이벤트 함수 */
+            function init_event() {
+
+                /* 모바일 메뉴 버튼 클릭했을때 모바일 메뉴영역 나오게 하기 */
+                $menu.click(function (event) {
+                    event.preventDefault();
+                    $left_gnb.addClass('on');
+                });
+
+                /* x버튼 눌렀을때 모바일 메뉴 닫기 */
+                $('.close').click(function (event) {
+                    event.preventDefault();
+
+                    $left_gnb.removeClass('on');
+
+                    // x버튼 누르면 시간차 약간두고 소메뉴 닫히게 하기
+                    setTimeout(function () {
+                        $depth1_btn.removeClass('on');
+                        $depth1.slideUp();
+                    }, 300)
+                });
+
+                /* depth1의 각메뉴 클릭시 depth2 나오게 하기 */
+                $depth1_btn.click(function (event) {
+                    event.preventDefault();
+                    var $this = $(this);
+                    var $this_ul = $this.siblings('ul');
+
+                    var check = $this.hasClass('on');
+                    if (check) {
+                        $this.removeClass('on');
+                        $this_ul.stop(true, true).slideUp();
+                    } else {
+                        $depth1_btn.removeClass('on');
+                        $depth1.stop().slideUp();
+                        $this.addClass('on');
+                        $this_ul.stop(true, true).slideDown();
+                    }
+                });
+
+                /* 디바이스 크기 변경시 모바일 메뉴영역 숨기기 */
+                $(window).resize(function () {
+                    $left_gnb.removeClass('on');
+                });
+            }
+
+            start(); // 시작 호출
+        }
+    </script>
+</head>
+
+<body>
+    <div id="wrap">
+        <div id="header">
+            <div class="sns">
+                <div><img src="images/sns_01.png"></div>
+                <div><img src="images/sns_02.png"></div>
+                <div><img src="images/sns_03.png"></div>
+                <div><img src="images/sns_04.png"></div>
+                <div><img src="images/sns_05.png"></div>
+                <div><img src="images/sns_06.png"></div>
+                <!-- 초기화 -->
+            </div>
+            <div class="logo"><a href="sub.html"><img src="images/logo.png"></a></div>
+            <div class="logo_s"><img src="images/logo_simple.png"></div>
+            <div class="h_btn">
+                <div class="btn1"><a href="#">로그인</a></div>
+                <div class="btn2"><a href="#">수강신청</a></div>
+                <div class="menu">
+                    <a href="#"><img src="images/menu.png"></a>
+                </div>
+                <nav class="left_gnbWrap">
+                    <a href="#" class="close"><img src="images/close.png"></a>
+                    <ul class="left_gnb">
+                        <li>
+                            <a href="#">토익</a>
+                            <ul>
+                                <li><a href="#">500점</a></li>
+                                <li><a href="#">700점</a></li>
+                                <li><a href="#">900점</a></li>
+                                <li><a href="#">토스</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">영어</a>
+                            <ul>
+                                <li><a href="#">문법 ㅣ 회화</a></li>
+                                <li><a href="#">어휘 ㅣ 독해&영작문</a></li>
+                                <li><a href="#">청취&CNN ㅣ 비즈니스</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">일본어</a>
+                            <ul>
+                                <li><a href="#">일본어 회화</a></li>
+                                <li><a href="#">JPT/SJPT</a></li>
+                                <li><a href="#">JLPT</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">중국어</a>
+                            <ul>
+                                <li><a href="#">중국어 회화</a></li>
+                                <li><a href="#">HSK/TSC</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">강의검색</a>
+                        </li>
+                        <li>
+                            <a href="sub.html">뉴스</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- 초기화 -->
+        </div>
+        <div id="mainimg">
+            <div class="inner">
+                <div class="main_l">
+                    <h1>토익은<br>
+                        토익에게 물어봐!</h1>
+                    <p>토익 전문가의 명쾌한 해답!</p>
+                    <div class="btn4">자세히 보기</div>
+                </div>
+                <div class="main_r">
+                    <p>7월</p>
+                    <p>수강신청</p>
+                    <div><img src="images/main_r_btn.png "></div>
+                </div>
+            </div>
+        </div>
+        <div id="contents">
+            <div class="box0">
+                <h1>토익은 <br>토익에게 물어봐!</h1>
+                <p>토익 전문가의 명쾌한 해답!</p>
+                <div class="btn0">자세히 보기</div>
+            </div>
+            <div class="box1">
+                <div class="inner">
+                    <h1>외국어 <span>필수</span> 시대</h1>
+                    <div class="box1_imgset">
+                        <div class="box1_img1">
+                            <p>class 1</p>
+                            <h2>영어회화</h2>
+                            <div></div>
+                        </div>
+                        <div class="box1_img2">
+                            <p>class 2</p>
+                            <h2>일본어</h2>
+                            <div></div>
+                        </div>
+                        <div class="box1_img3">
+                            <p>class 3</p>
+                            <h2>중국어</h2>
+                            <div></div>
+                        </div>
+                        <!-- 초기화 -->
+                    </div>
+                </div>
+            </div>
+            <div class="box2">
+                <div class="inner">
+                    <h1>각종 <span>시험</span> 관리</h1>
+                    <div class="box2_l">
+                        <div class="box2_l_t">
+                            <p>KOREAN · 기타</p>
+                            <div class="btn5"><a href="#">알아보기</a></div>
+                        </div>
+                        <div class="box2_l_b">
+                            <p>YBM내신</p>
+                            <div class="btn5"><a href="#">알아보기</a></div>
+                        </div>
+                    </div>
+                    <div class="box2_r">
+                        <div class="box2_r1">
+                            <div>토익</div>
+                            <div><img src="images/box2_right1.png"></div>
+                            <p>목표 점수별<br>
+                                집중 강의</p>
+                        </div>
+                        <div class="box2_r2">
+                            <div>토스·시험대비</div>
+                            <div><img src="images/box2_right2.png"></div>
+                            <p>각종 시험영어<br>
+                                대비 학습</p>
+                        </div>
+                        <!-- 초기화 -->
+                    </div>
+                    <!-- 초기화 -->
+                </div>
+            </div>
+            <div class="box3">
+                <div class="inner">
+                    <div class="box3_l">
+                        <div>
+                            <h1>강사 소개</h1>
+                            <p>YBM어학원의 우수한 강사진을 소개합니다.<br>
+                                보시려는 센터를 선택해주세요.</p>
+                            <div class="btn6"><a href="#">확인하기</a></div>
+                        </div>
+                        <div><img src="images/box3_teacher.png"></div>
+                    </div>
+                    <div class="box3_r">
+                        <div>
+                            <h1>수강 후기</h1>
+                            <p>믿을 만한 진짜 후기를 확인해 보세요.<br>
+                                학원별, 목표별 맞춤 후기!</p>
+                            <div class="btn6"><a href="#">확인하기</a></div>
+                        </div>
+                        <div><img src="images/box3_diary.png"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <div class="inner">
+                <div class="copyright">
+                    <p>개인정보처리방침 ㅣ 영상정보처리기기 ㅣ 운영관리방침 ㅣ 이용약관 ㅣ 회사소개
+                    </p>
+                    <p>사업자 등록번호 220-81-67899 ㅣ 통신판매업신고번호 제 2004-01503호 ㅣ 대표이사 : 최재호<br>
+                        서울특별시 종로구 종로 104(종로2가) (주) 와이비엠에듀<br>
+                        Copyright ⓒ (주)와이비엠에듀. All rights reserved.</p>
+                </div>
+                <div class="f_logo"><img src="images/f_logo.png"></div>
+                <!-- 초기화 -->
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제주수목원/sub2</title>
+    <link href="css/sub2.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="js/script_sub2.js"></script>
+
+    <!-- btn3 메뉴 버튼 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        var j120 = jQuery.noConflict();
+        j120(document).ready(function () {
+            mobile_menu();
+        });
+
+        function mobile_menu() {
+            /* 변수 선언 */
+            var $menu = null;
+            var $left_gnb = null; // 영역 전체
+            var $depth1_wrap = null;
+            var $depth1 = null;
+            var $depth1_btn = null;
+
+            /* 시작 함수 */
+            function start() {
+                init();
+                init_event();
+            }
+            /* 변수 초기화 함수 */
+            function init() {
+                $menu = j120('.btn3');
+                $left_gnb = j120('.left_gnbWrap'); // 영역 전체
+                $depth1_wrap = j120('.left_gnb>li');
+                $depth1 = $depth1_wrap.children('ul');
+                $depth1_btn = $depth1_wrap.children('a');
+            }
+            /* 이벤트 함수 */
+            function init_event() {
+
+                /* 모바일 메뉴 버튼 클릭했을때 모바일 메뉴영역 나오게 하기 */
+                $menu.click(function (event) {
+                    event.preventDefault();
+                    $left_gnb.addClass('on');
+                });
+
+                /* x버튼 눌렀을때 모바일 메뉴 닫기 */
+                $('.close').click(function (event) {
+                    event.preventDefault();
+
+                    $left_gnb.removeClass('on');
+
+                    // x버튼 누르면 시간차 약간두고 소메뉴 닫히게 하기
+                    setTimeout(function () {
+                        $depth1_btn.removeClass('on');
+                        $depth1.slideUp();
+                    }, 300)
+                });
+
+                /* depth1의 각메뉴 클릭시 depth2 나오게 하기 */
+                $depth1_btn.click(function (event) {
+                    event.preventDefault();
+                    var $this = $(this);
+                    var $this_ul = $this.siblings('ul');
+
+                    var check = $this.hasClass('on');
+                    if (check) {
+                        $this.removeClass('on');
+                        $this_ul.stop(true, true).slideUp();
+                    } else {
+                        $depth1_btn.removeClass('on');
+                        $depth1.stop().slideUp();
+                        $this.addClass('on');
+                        $this_ul.stop(true, true).slideDown();
+                    }
+                });
+
+                /* 디바이스 크기 변경시 모바일 메뉴영역 숨기기 */
+                j120(window).resize(function () {
+                    $left_gnb.removeClass('on');
+                });
+            }
+
+            start(); // 시작 호출
+        }
+    </script>
+</head>
+
+<body>
+    <div id="wrap">
+        <div id="header">
+            <div class="logo"><a href="index.html"><img src="images/logo.png"></a></div>
+            <nav>
+                <div class="inner">
+                    <ul class="menu">
+                        <li><a href="sub1.html">수목원 소개</a>
+                            <div class="nav_box">
+                                <ul class="submenu">
+                                    <li>
+                                        <ul>
+                                            <li><a href="sub1.html">관람안내</a></li>
+                                            <li><a>찾아오시는길</a></li>
+                                            <li><a>기관소개</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <ul>
+                                            <li><a href="sub2.html">수목원구성</a></li>
+                                            <li><a>주요시설물</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <ul>
+                                            <li><a href="sub3.html">식물소개</a></li>
+                                            <li><a>오늘의 식물</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <ul>
+                                            <li><a href="sub4.html">수목원소식</a></li>
+                                            <li><a>자유게시판</a></li>
+                                            <li><a>탐방갤러리</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a href="sub2.html">수목원 둘러보기</a>
+                            <div class="nav_box">
+                                <ul class="submenu">
+                                    <li>
+                                        <ul>
+                                            <li><a href="sub1.html">관람안내</a></li>
+                                            <li><a>찾아오시는길</a></li>
+                                            <li><a>기관소개</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <ul>
+                                            <li><a href="sub2.html">수목원구성</a></li>
+                                            <li><a>주요시설물</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <ul>
+                                            <li><a href="sub3.html">식물소개</a></li>
+                                            <li><a>오늘의 식물</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <ul>
+                                            <li><a href="sub4.html">수목원소식</a></li>
+                                            <li><a>자유게시판</a></li>
+                                            <li><a>탐방갤러리</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a href="sub3.html">식물자료실</a>
+                            <div class="nav_box">
+                                <ul class="submenu">
+                                    <li>
+                                        <ul>
+                                            <li><a href="sub1.html">관람안내</a></li>
+                                            <li><a>찾아오시는길</a></li>
+                                            <li><a>기관소개</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <ul>
+                                            <li><a href="sub2.html">수목원구성</a></li>
+                                            <li><a>주요시설물</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <ul>
+                                            <li><a href="sub3.html">식물소개</a></li>
+                                            <li><a>오늘의 식물</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <ul>
+                                            <li><a href="sub4.html">수목원소식</a></li>
+                                            <li><a>자유게시판</a></li>
+                                            <li><a>탐방갤러리</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a href="sub4.html">참여마당</a>
+                            <div class="nav_box">
+                                <ul class="submenu">
+                                    <li>
+                                        <ul>
+                                            <li><a href="sub1.html">관람안내</a></li>
+                                            <li><a>찾아오시는길</a></li>
+                                            <li><a>기관소개</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <ul>
+                                            <li><a href="sub2.html">수목원구성</a></li>
+                                            <li><a>주요시설물</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <ul>
+                                            <li><a href="sub3.html">식물소개</a></li>
+                                            <li><a>오늘의 식물</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <ul>
+                                            <li><a href="sub4.html">수목원소식</a></li>
+                                            <li><a>자유게시판</a></li>
+                                            <li><a>탐방갤러리</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <!-- 초기화 -->
+                    </ul>
+                </div>
+            </nav>
+            <div class="header_btn">
+                <div class="btn1">
+                    <a href="#"><img src="images/icon_global.png"></a>
+                    <ul class="btn1_con">
+                        <li><a href="index.html">KOR</a></li>
+                        <li><a href="#">ENG</a></li>
+                    </ul>
+                </div>
+                <div class="btn2">
+                    <a href="#"><img src="images/icon_search.png"></a>
+                    <div class="btn2_con">
+                        <div>
+                            <form>
+                                <input type="text" value="검색어를 입력해 주세요." class="main_searchbar_t">
+                                <input type="button" class="main_searchbar_b">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn3">
+                    <a href="#"><img src="images/icon_menu.png"></a>
+                </div>
+                <nav class="left_gnbWrap">
+                    <a href="#" class="close"><img src="images/close.png"></a>
+                    <ul class="left_gnb">
+                        <li>
+                            <a href="sub1.html">수목원 소개</a>
+                            <ul>
+                                <li><a href="sub1.html">관람안내</a></li>
+                                <li><a href="#">찾아오시는길</a></li>
+                                <li><a href="#">기관소개</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="sub2.html">수목원 둘러보기</a>
+                            <ul>
+                                <li><a href="sub2.html">수목원구성</a></li>
+                                <li><a href="#">주요시설물</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="sub3.html">식물자료실</a>
+                            <ul>
+                                <li><a href="sub3.html">식물소개</a></li>
+                                <li><a href="#">오늘의 식물</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="sub4.html">참여마당</a>
+                            <ul>
+                                <li><a href="sub4.html">수목원소식</a></li>
+                                <li><a href="#">자유게시판</a></li>
+                                <li><a href="#">탐방갤러리</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- 초기화 -->
+            </div>
+            <!-- 초기화 -->
+        </div>
+        <div id="mainimg"></div>
+        <div id="contents">
+            <nav>
+                <div class="s_inner">
+                    <ul class="sidemenu">
+                        <li><a href="index.html"></a>
+                        </li>
+                        <li><a>수목원 둘러보기</a>
+                        </li>
+                        <li><a href="#">수목원 구성</a>
+                            <ul class="side_menu">
+                                <li><a href="sub2.html">수목원구성</a></li>
+                                <li><a href="#">주요시설물</a></li>
+                            </ul>
+                        </li>
+                        <!-- 초기화 -->
+                    </ul>
+                </div>
+            </nav>
+            <div class="inner">
+                <h2>수목원 구성</h2>
+                <div class="tabSet">
+                    <ul class="tabs">
+                        <li><a href="#panel1-1" class="on">산림욕장</a></li>
+                        <li><a href="#panel1-2">화목원</a></li>
+                        <li><a href="#panel1-3">수생식물원</a></li>
+                        <li><a href="#panel1-4">도외수종원</a></li>
+                        <li><a href="#panel1-5">만목원</a></li>
+                        <li><a href="#panel1-6">관목원</a></li>
+                        <li><a href="#panel1-7">교목원</a></li>
+                        <li><a href="#panel1-8">야생화원</a></li>
+                        <li><a href="#panel1-9">약·식용원</a></li>
+                        <li><a href="#panel1-10">이끼원</a></li>
+                        <li><a href="#panel1-11">제주희귀식물전시실</a></li>
+                        <li><a href="#panel1-12">자연생태체험학습관</a></li>
+                        <li><a href="#panel1-13">잔디광장</a></li>
+                        <li><a href="#panel1-14">죽림원</a></li>
+                        <li><a href="#panel1-15">난 전시실</a></li>
+                        <li><a href="#panel1-16">희귀특산수종원</a></li>
+                        <!-- ///초기화 -->
+                    </ul>
+                    <div class="panels">
+                        <div class="panel" id="panel1-1">
+                            <h4>산림욕장 <span>山林浴場 / Green Shower Area</span></h4>
+                            <p>산림의 공익기능 제공과 보건향상을 위하여 조성된 곳으로, 광이오름을 올라갈 수 있는 다양한 산책로를 걸으며 산림욕을 할 수 있다.<br>오름 정상에 평상 등 휴식시설이
+                                마련되어 있다.</p>
+                            <div class="imgset">
+                                <div></div>
+                                <div></div>
+                                <!-- 초기화 -->
+                            </div>
+                        </div>
+                        <div class="panel" id="panel1-2">
+                            <h4>화목원 <span>花木園 / Flower Garden</span></h4>
+                            <p>꽃이 아름다운 나무 또는 야생화들이 전시되어 있는 곳으로,<br>제주도를 대표하는 참꽃나무를 비롯하여 황근, 백서향, 수국, 정금나무, 병아리꽃나무 등이 전시되어 있다.</p>
+                            <div class="imgset">
+                                <div></div>
+                                <div></div>
+                                <!-- 초기화 -->
+                            </div>
+                        </div>
+                        <div class="panel" id="panel1-3">
+                            <h4>수생식물원 <span>水生植物園 / Hydrophytes Garden</span></h4>
+                            <p>수생식물은 물가에서 자라는 수변식물, 물에 떠다니는 부유식물, 물속에 뿌리를 내리고 사는 식물 등을 말하며,<br>수련, 순채, 어리연꽃, 노랑꽃창포 등이 있다.</p>
+                            <div class="imgset">
+                                <div></div>
+                                <div></div>
+                                <!-- 초기화 -->
+                            </div>
+                        </div>
+                        <div class="panel" id="panel1-4">
+                            <h4>도외수종원 <span>道外樹種園 / Non-Spontaneous Plants Garden in Jeju-Island</span></h4>
+                            <p>우리나라에 도입된 외국 원산의 수종과 제주도 이외의 지역에 자생하는 식물을 한 눈에 볼 수 있게 하기 위하여 조성되었으며,<br>태산목, 통탈목, 메타쉐콰이어, 양버즘나무 등이 있다.</p>
+                            <div class="imgset">
+                                <div></div>
+                                <div></div>
+                                <!-- 초기화 -->
+                            </div>
+                        </div>
+                        <div class="panel" id="panel1-5">
+                            <h4>만목원 <span>蔓木園 / Twiner Garden</span></h4>
+                            <p>땅바닥을 기거나 줄기로 다른 식물이나 물체를 감싸거나 달라붙어 자라는 덩굴식물들을 식재한 곳으로,<br>섬다래, 송악, 등, 멀꿀, 바위수국 등이 식재되어 있다.</p>
+                            <div class="imgset">
+                                <div></div>
+                                <div></div>
+                                <!-- 초기화 -->
+                            </div>
+                        </div>
+                        <div class="panel" id="panel1-6">
+                            <h4>관목원 <span>灌木園 / Shrubs Garden</span></h4>
+                            <p>키가 작고 중심 줄기가 분명하지 않고 여러 개의 가지를 가진 나무를 관목이라 하며,<br>눈향나무, 가막살나무, 작살나무, 백량금, 길마가지 등이 식재되어 있다.
+                            </p>
+                            <div class="imgset">
+                                <div></div>
+                                <div></div>
+                                <!-- 초기화 -->
+                            </div>
+                        </div>
+                        <div class="panel" id="panel1-7">
+                            <h4>교목원 <span>喬木園 / Trees Garden</span></h4>
+                            <p>줄기가 곧고 굵으며 위쪽에서 가지가 퍼지며 키가 4~5m 이상인 나무를 교목이라 하며,<br>제주도의 상징인 녹나무와 개가시나무, 왕벚나무 등이 전시되어 있다.
+                            </p>
+                            <div class="imgset">
+                                <div></div>
+                                <div></div>
+                                <!-- 초기화 -->
+                            </div>
+                        </div>
+                        <div class="panel" id="panel1-8">
+                            <h4>야생화원 <span>野生花園 / Wildflower Garden</span></h4>
+                            <p>산이나 들에 자생하며 꽃을 피우는 식물을 식재한 곳으로 계절에 따라 다양한 꽃을 관찰할 수 있다. 백작약, 돌단풍, 해국, 산마늘 등이 식재되어 있다.                   </p>
+                            <div class="imgset">
+                                <div></div>
+                                <div></div>
+                                <!-- 초기화 -->
+                            </div>
+                        </div>
+                        <div class="panel" id="panel1-9">
+                            <h4>약·식용원 <span>藥食用園 / Medicinal & Edible Plants Garden</span></h4>
+                            <p>열매, 잎, 줄기 등을 먹거나 민간약으로 이용되기도 하는 식물을 전시한 곳으로,<br>후박나무, 골담초, 모과나무, 매실나무, 고추나무 등이 식재되어 있다.                   </p>
+                            <div class="imgset">
+                                <div></div>
+                                <div></div>
+                                <!-- 초기화 -->
+                            </div>
+                        </div>
+                        <div class="panel" id="panel1-10">
+                            <h4>이끼원 <span>苔園 / Moss Garden</span></h4>
+                            <p>이끼는 청정지역을 나타내주는 지표식물로서 습윤성과 내한성을 갖고 있는 대표적인 선태식물이다.<br>솔이끼, 꼬리이끼, 깃털이끼 등이 식재되어 있다.
+                            </p>
+                            <div class="imgset">
+                                <div></div>
+                                <div></div>
+                                <!-- 초기화 -->
+                            </div>
+                        </div>
+                        <div class="panel" id="panel1-11">
+                            <h4>제주희귀식물전시실 <span></span></h4>
+                            <p>제주희귀식물전시실은 우리도에서 자라는 대표적인 희귀특산식물을 전시한 공간으로 수생·습지 식물, 희귀·특산 식물, 곶자왈 식물 등의 3개 테마공간으로 구성되었다.<br>수생·습지 식물은 제주습지등에서 흔히 볼 수 있는 식물을 위주로 전시하였으며 희귀·특산식물 전시공간은 제주도 모형을 축소하여 해안, 중산간 등 지대별로 분포하는 식물을 주제로 만들었고 곶자왈 식물 전시공간은 제주 생태계의 보고인 곶자왈식물(양치류 등)등을 전시하였다.              </p>
+                            <div class="imgset">
+                                <div></div>
+                                <div></div>
+                                <!-- 초기화 -->
+                            </div>
+                        </div>
+                        <div class="panel" id="panel1-12">
+                            <h4>자연생태체험학습관 <span>Natural Ecology Experience Exhibition Hall</span></h4>
+                            <p>도민, 관광객 및 학생들에게 환경교육 및 환경정보 수요충족, 자연체험학습의 기회제공 등 종합적인 환경교육과 홍보를 위한 시설로써,<br>자연의 세계, 자연자료실, 기획전시실로 구성되어 있다.                   </p>
+                            <div class="imgset">
+                                <div></div>
+                                <div></div>
+                                <!-- 초기화 -->
+                            </div>
+                        </div>
+                        <div class="panel" id="panel1-13">
+                            <h4>잔디광장 <span>a lawn Square</span></h4>
+                            <p></p>
+                            <div class="imgset">
+                                <div></div>
+                                <div></div>
+                                <!-- 초기화 -->
+                            </div>
+                        </div>
+                        <div class="panel" id="panel1-14">
+                            <h4>죽림원 <span>竹林園 / Bamboos Garden</span></h4>
+                            <p>벼과에 속하는 상록성 식물인 대나무가 우거진 곳으로, 왕대, 제주조릿대, 신이대 등이 전시되어 있다.<br>대나무 사이에는 산책로가 있어 가까이에서 대나무를 관찰할 수 있다.
+                            </p>
+                            <div class="imgset">
+                                <div></div>
+                                <div></div>
+                                <!-- 초기화 -->
+                            </div>
+                        </div>
+                        <div class="panel" id="panel1-15">
+                            <h4>난 전시실 <span>蘭展示室 / Orchid Exhibition House</span></h4>
+                            <p>난초과에 속하는 난을 보존, 전시한 곳으로써,<br>천연기념물 제191호인 한란을 비롯하여 춘란, 석곡, 풍란 등이 전시되어 있으며. 제주용암석도 같이 전시하고 있다.                   </p>
+                            <div class="imgset">
+                                <div></div>
+                                <div></div>
+                                <!-- 초기화 -->
+                            </div>
+                        </div>
+                        <div class="panel" id="panel1-16">
+                            <h4>희귀특산수종원 <span>稀貴特産樹種園 / Endemic & Rare Woody Plants Garden</span></h4>
+                            <p>제주도에서만 자라거나 멸종이 우려되는 희귀한 식물과 특산식물을 전시한 장소로,<br>빌레나무, 섬오갈피, 붓순나무, 소귀나무, 황근, 채진목 등이 식재되어 있다.
+                            </p>
+                            <div class="imgset">
+                                <div></div>
+                                <div></div>
+                                <!-- 초기화 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <div class="inner">
+                <div class="copyright">
+                    <p><span>개인정보처리방침</span> ㅣ 이용안내 ㅣ 찾아오시는 길 ㅣ 사이트맵</p>
+                    <p>Copyright 2012 제주특별자치도. All rights reserved<br>
+                        (63143) 제주특별자치도 제주시 수목원길 72 (연동) 대표전화:064-710-7575</p>
+                </div>
+                <div class="f_logo"><img src="images/f_logo.png"></div>
+                <!-- 초기화 -->
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
