@@ -49,10 +49,11 @@
       </div>
 
       <nav class="nav-menu float-right d-none d-lg-block">
-        <ul>
-          <li class="active"><a href="index.html">HOME</a></li>
-          <li><a href="portfolio.html">PORTFOLIO</a></li>
-          <li><a href="#">CONTACT</a></li>
+        <ul class="menu">
+          <li class="menui"><a href="#hero">HOME</a></li>
+          <li class="menui"><a href="#web">WEB</a></li>
+          <li class="menui"><a href="#visual">VISUAL</a></li>
+          <li class="menui"><a href="#footer">CONTACT</a></li>
         </ul>
       </nav><!-- .nav-menu -->
 
@@ -108,18 +109,21 @@
     <!-- ======= Portfolio Section ======= -->
     <section class="portfolio">
       <div class="container">
-
-        <h1>Web</h1>
-        <div class="web">
-
+        
+        <div id="web" class="web">
+          <h1>Web</h1>
           <div class="col-md-5 col-l">
             <h3>PROJECT 1</h3>
             <div class="portfolio-item">
               <img src="assets/img/portfolio/thumbnails/web/KBO_th.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h2>KBO</h2>
-                <a href="project1/index.html" target="_blank" title="KBO"><div>WEB</div></a>
-                <a href="project1/bxpage.html" title="KBO"><div>BX</div></a>
+                <a href="project1/index.html" target="_blank" title="KBO">
+                  <div>WEB</div>
+                </a>
+                <a href="project1/bxpage.html" title="KBO">
+                  <div>BX</div>
+                </a>
               </div>
             </div>
           </div>
@@ -130,8 +134,12 @@
               <img src="assets/img/portfolio/thumbnails/web/YBM_th.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h2>YBM어학원</h2>
-                <a href="project2/index.html" target="_blank" title="KBO"><div>WEB</div></a>
-                <a href="project2/bxpage.html" title="KBO"><div>BX</div></a>
+                <a href="project2/index.html" target="_blank" title="KBO">
+                  <div>WEB</div>
+                </a>
+                <a href="project2/bxpage.html" title="KBO">
+                  <div>BX</div>
+                </a>
               </div>
             </div>
           </div>
@@ -142,8 +150,12 @@
               <img src="assets/img/portfolio/thumbnails/web/JEJU_th.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h2>제주수목원</h2>
-                <a href="project3/index.html" target="_blank" title="KBO"><div>WEB</div></a>
-                <a href="project3/bxpage.html" title="KBO"><div>BX</div></a>
+                <a href="project3/index.html" target="_blank" title="KBO">
+                  <div>WEB</div>
+                </a>
+                <a href="project3/bxpage.html" title="KBO">
+                  <div>BX</div>
+                </a>
               </div>
             </div>
           </div>
@@ -154,14 +166,16 @@
               <img src="assets/img/portfolio/thumbnails/web/shoppingmall_th.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h2>스마트스토어</h2>
-                <a href="https://smartstore.naver.com/cleanupsidee" target="_blank" title="KBO"><div>WEB</div></a>
+                <a href="https://smartstore.naver.com/cleanupsidee" target="_blank" title="KBO">
+                  <div>WEB</div>
+                </a>
               </div>
             </div>
           </div>
         </div>
 
-        <h1>Visual</h1>
-        <div class="row">
+        <div id="visual" class="row">
+          <h1>Visual</h1>
           <div class="col-lg-12">
             <ul id="portfolio-flters">
               <li data-filter="*" class="filter-active">all</li>
@@ -179,7 +193,7 @@
             <div class="portfolio-item">
               <img src="assets/img/portfolio/thumbnails/banner/banner1_th.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
-                <h4><a href="assets/img/portfolio/fullsize/banner/banner1_concept.jpg" data-gall="portfolioGallery" class="venobox" title="banner 1"><div>VIEW +</div></a></h4>
+                <h4><a href="assets/img/portfolio/fullsize/banner/banner1_concept.jpg" data-gall="portfolioGallery"class="venobox" title="banner 1"><div>VIEW +</div></a></h4>
               </div>
             </div>
           </div>
@@ -353,6 +367,18 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  
+  <!-- onepage scrolling js -->
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.js"></script>
+  <script>
+    $(document).ready(function (e) {
+      $('.menu>li>a').on('click', function (e) {
+        e.preventDefault();
+        $('html, body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+        return false;
+      });
+    });
+  </script>
 
 </body>
 
