@@ -375,6 +375,11 @@ a.close {
     clear: both;
 }
 
+/* slide start */
+#banner{display: none;}
+/* slide finish */
+
+
 .box4 {
     height: 804px;
     background-color: #e6e8e7;
@@ -651,6 +656,9 @@ a.close {
     .left_btn, .right_btn{display: none;}
 
     .content_text{width: 50%;}
+    
+    .box1, .box2, .box3{display: none;}
+    #banner{display: block;}
 }
 
 @media (max-width:805px) {
