@@ -944,6 +944,10 @@ nav {
     .btn_r {
         right: 0;
     }
+    
+    .box1_imgset>div>div {
+        height: 550px;
+    }
 }
 
 @media (max-width:1400px) {
